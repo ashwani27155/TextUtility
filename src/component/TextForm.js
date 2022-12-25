@@ -5,24 +5,29 @@ export default function TextForm(props) {
    const onClickHandler=()=>{
         let utext=text.toUpperCase()
         setText(utext);
+        props.showAlert(" Converted to UpperCase","success");
     }
     const onClickHandler1=()=>{
         let utext=text.toLowerCase()
         setText(utext);
+        props.showAlert(" Converted to LowerCase","success");
     }
     const onClickHandler2=()=>{
         let utext=" "
         setText(utext);
+        props.showAlert(" Text has been Cleared","success");
     }
     const onClickHandler3=()=>{
         var text=document.getElementById('text');
         text.select()
         navigator.clipboard.writeText(text.value);
         window.alert("Text Copied")
+        props.showAlert(" Clipboard has been copied","success");
     }
     const onClickHandler4=()=>{
         let newText=text.split(/[ ]+/)
         setText(newText.join(" "));
+        props.showAlert(" Extra space has been removed","success");
     }
     const HandleonClickMethod=(event)=>{
         console.log("run function");
@@ -33,7 +38,7 @@ export default function TextForm(props) {
     <div>
         <h1  >{props.heading} </h1>
       <div className="mb-3">
-         <textarea className="form-control"  value={text} onChange={HandleonClickMethod} id="text" rows="8"></textarea>
+         <textarea className="form-control"  value={text} style={{backgroundColor:props.mode==='dark'?'gray':'white',color:props.mode==='dark'?'white':'black'}}onChange={HandleonClickMethod} id="text" rows="8"></textarea>
          
         </div>
        <div className="container">
